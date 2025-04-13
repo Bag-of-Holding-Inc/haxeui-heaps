@@ -34,14 +34,12 @@ class AssetsImpl extends AssetsBase {
         //     trace(e);
         //     callback(null);
         // }
-        js.html.Console.log("TRYING TO LOAD RESOURCE ID " + resourceId);
         tools.AutoPak.loadImageForUi(resourceId, (loadedTile) -> {
            var imageInfo:haxe.ui.assets.ImageInfo = {
                 width: loadedTile.width,
                 height: loadedTile.height,
                 data: loadedTile
            };
-           js.html.Console.log(loadedTile);
            callback(imageInfo);
         });
     }
