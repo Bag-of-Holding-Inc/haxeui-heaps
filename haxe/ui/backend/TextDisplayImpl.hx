@@ -58,6 +58,7 @@ class TextDisplayImpl extends TextBase {
         }
 
         if (_textStyle != null) {
+            js.html.Console.log(_textStyle);
             var fontSizeValue = Std.int(_textStyle.fontSize);
             if (fontSizeValue <= 0) {
                 fontSizeValue = Std.int(defaultFontSize);
@@ -86,6 +87,11 @@ class TextDisplayImpl extends TextBase {
 
             if (sprite.textColor != _textStyle.color) {
                 sprite.textColor = _textStyle.color;
+            }
+
+            if(sprite.lineSpacing != _textStyle.lineHeight) {
+                sprite.lineSpacing = _textStyle.lineHeight;
+                measureTextRequired = true;
             }
         }
 
@@ -157,8 +163,9 @@ class TextDisplayImpl extends TextBase {
     }
 
     private function createText():h2d.Text {
-        var text = new h2d.Text(hxd.res.DefaultFont.get(), parentComponent);
-        text.lineBreak = false;
+        var text = new h2d.HtmlText(hxd.res.DefaultFont.get(), parentComponent);
+        text.lineBreak = true;
+        text.condenseWhite = false;
         return text;
     }
 

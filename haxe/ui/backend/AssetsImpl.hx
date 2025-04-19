@@ -84,7 +84,8 @@ class AssetsImpl extends AssetsBase {
     
     private override function getFontInternal(resourceId:String, callback:FontInfo->Void) {
         try {
-            var font = hxd.Res.loader.loadCache(resourceId, hxd.res.BitmapFont);
+            var font = hxd.Res.loader.loadCache("fonts/" + resourceId + ".fnt", hxd.res.BitmapFont);
+            //var font = Reflect.getProperty(assets.Assets, "font" + resourceId);
             callback({
                 name: resourceId,
                 data: font
