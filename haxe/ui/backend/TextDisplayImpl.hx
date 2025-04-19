@@ -58,7 +58,6 @@ class TextDisplayImpl extends TextBase {
         }
 
         if (_textStyle != null) {
-            js.html.Console.log(_textStyle);
             var fontSizeValue = Std.int(_textStyle.fontSize);
             if (fontSizeValue <= 0) {
                 fontSizeValue = Std.int(defaultFontSize);
