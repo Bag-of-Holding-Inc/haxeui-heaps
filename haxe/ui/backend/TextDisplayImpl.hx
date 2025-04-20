@@ -163,8 +163,8 @@ class TextDisplayImpl extends TextBase {
 
     private function createText():h2d.Text {
         var text = new h2d.HtmlText(hxd.res.DefaultFont.get(), parentComponent);
-        text.lineBreak = true;
-        text.condenseWhite = false;
+        text.lineBreak = false;
+        //text.condenseWhite = false;
         return text;
     }
 
