@@ -44,7 +44,7 @@ class TextDisplayImpl extends TextBase {
                 if (sdfDetails != null) {
                     font = _currentFontData.toSdfFont(defaultFontSize, sdfDetails.channel, sdfDetails.alphaCutoff, sdfDetails.smoothing).clone();
                 } else {
-                    font = _currentFontData.toFont().clone();
+                    font = _currentFontData.toFont();
                     isBitmap = true;
                 }
 
