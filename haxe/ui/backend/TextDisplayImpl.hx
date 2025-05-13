@@ -12,6 +12,8 @@ class TextDisplayImpl extends TextBase {
 
     public var isDefaultFont:Bool = true;
 
+    static var fontCache = new Map<String, Map<Int, Font>>();
+
     public function new() {
         super();
         sprite = createText();
@@ -98,6 +100,10 @@ class TextDisplayImpl extends TextBase {
     }
     
     private function resizeFont(fontSizeValue:Int, isBitmap:Bool) {
+        if(fontCache.exists(sprite.font.name) && fontCache.get(sprite.font.name).exists(fontSizeValue)) {
+            sprite.font = fontCache.get(sprite.font.name).get(fontSizeValue);
+            return;
+        }
         var temp = sprite.font.clone();
         sprite.font = null;
         if (isBitmap) {
@@ -109,6 +115,10 @@ class TextDisplayImpl extends TextBase {
             temp.resizeTo(fontSizeValue);
         }
         sprite.font = temp;
+        if(!fontCache.exists(sprite.font.name)) {
+            fontCache.set(sprite.font.name, new Map<Int, Font>());
+        }
+        fontCache.get(sprite.font.name).set(fontSizeValue, sprite.font);
         temp = null;
     }
 
