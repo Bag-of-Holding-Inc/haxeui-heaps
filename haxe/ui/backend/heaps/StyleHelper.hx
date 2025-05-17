@@ -107,6 +107,10 @@ class StyleHelper {
                 }
                 bgImageGraphics.clear();
 
+                if(style.imageRendering != "pixelated") {
+                    bgImageGraphics.smooth = true;
+                }
+
                 var trc:Rectangle = new Rectangle(0, 0, imageInfo.width, imageInfo.height);
                 if (style.backgroundImageClipTop != null
                     && style.backgroundImageClipLeft != null
@@ -618,7 +622,6 @@ class StyleHelper {
             sub = tile.sub(src.left * scaleX, src.top * scaleY, src.width, src.height);
             TileCache.set(backgroundImage + "_" + scaleX + "_" + scaleY, sub, src);
         }
-        g.smooth = true;
         g.beginTileFill(dst.left, dst.top, scaleX, scaleY, sub);
         g.drawRect(dst.left, dst.top, dst.width, dst.height);
         g.endFill();
