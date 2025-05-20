@@ -94,6 +94,17 @@ class TextDisplayImpl extends TextBase {
                 sprite.lineSpacing = _textStyle.lineHeight;
                 measureTextRequired = true;
             }
+
+            if(sprite is h2d.HtmlText) {
+                var condenseWhite = true;
+                if(_textStyle.whiteSpace == "pre") {
+                    condenseWhite = false;
+                }
+                if(cast(sprite, h2d.HtmlText).condenseWhite!= condenseWhite) {
+                    cast(sprite, h2d.HtmlText).condenseWhite = condenseWhite;
+                    measureTextRequired = true;
+                }
+            }
         }
 
         return measureTextRequired;
@@ -174,7 +185,7 @@ class TextDisplayImpl extends TextBase {
     private function createText():h2d.Text {
         var text = new h2d.HtmlText(hxd.res.DefaultFont.get(), parentComponent);
         text.lineBreak = false;
-        //text.condenseWhite = false;
+        text.condenseWhite = true;
         return text;
     }
 
