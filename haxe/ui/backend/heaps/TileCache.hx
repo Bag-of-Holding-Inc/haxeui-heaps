@@ -50,6 +50,7 @@ class TileCache {
             }
             tile = h2d.Tile.fromBitmap(gradient);
         }
+        _cache.set(key, tile);
         
         return tile;
     }
